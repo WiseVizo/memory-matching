@@ -12,6 +12,7 @@
   text-align: center;
   font-size: 6vh;
   font-family: "Space Mono", monospace;
+  cursor: pointer;
 }
 
 .front {

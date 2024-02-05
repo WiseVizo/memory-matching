@@ -10,12 +10,12 @@
 
 .body {
   display: grid;
-  grid-template-columns: 6vw 6vw auto;
+  grid-template-columns: 6vw 6vw 6vw auto;
   grid-row-gap: 1vw; /* Gap between grid items */
   /* justify-items: center; Center align items horizontally */
   border: 2px solid rgba(254, 207, 126, 0.811);
   padding: 1vw;
   margin: 2vw;
   grid-column-gap: 5vw; /* Gap between each column */
-  width: 32vw;
+  width: 43vw;
 }

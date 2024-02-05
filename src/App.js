@@ -9,9 +9,9 @@ function App() {
 
   function handleSelectId1(id) {
     setSelectedId1(() => {
-      console.log("ID1-B4: " + selectedId1);
+      // console.log("ID1-B4: " + selectedId1);
       selectedIdRef1.current = id;
-      console.log("ID1: " + id);
+      // console.log("ID1: " + id);
       return id;
     });
   }
@@ -22,9 +22,9 @@ function App() {
 
   function handleSelectId2(id) {
     setSelectedId2(() => {
-      console.log("ID2-B4: " + selectedId2);
+      // console.log("ID2-B4: " + selectedId2);
       selectedIdRef2.current = id;
-      console.log("ID2: " + id);
+      // console.log("ID2: " + id);
       return id;
     });
   }
@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <h2>Pair All Cards With Same Contents To Win.</h2>
       <div className="body">
-        {[...Array(9)].map((_, index) => (
+        {[...Array(12)].map((_, index) => (
           <FlashCard
             key={index}
             index={index}
