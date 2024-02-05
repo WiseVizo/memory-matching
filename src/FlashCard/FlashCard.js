@@ -1,5 +1,3 @@
-// import { useState } from "react";
-// import { useEffect } from "react";
 import "./FlashCard.css";
 
 export default function Card({
@@ -11,26 +9,34 @@ export default function Card({
   selectedIdRef1,
 }) {
   function handleClick(index) {
-    handleSelectId1(index);
+    return new Promise((resolve) => {
+      handleSelectId1(index);
+      resolve(); // Resolve the promise when handleClick is done
+    });
   }
 
   function handleChange() {
-    console.log("hi: " + selectedIdRef1.current);
+    if (isClicked && index === selectedId1) {
+      setIsClicked(() => false);
+      return;
+    }
     if (selectedIdRef1.current === index) {
-      setIsClicked(() => !isClicked);
+      setIsClicked(() => true);
     }
   }
-  // useEffect(() => {
-  //   setSelectedId(() => index);
-  // }, [index, setSelectedId]);
+
+  const handleClickAndChange = async () => {
+    await handleClick(index); // Wait for handleClick to complete
+    handleChange(); // Then execute handleChange
+  };
+
   return (
     <div
       className={
         isClicked && index === selectedId1 ? "main front" : "main back"
       }
       onClick={() => {
-        handleClick(index);
-        handleChange();
+        handleClickAndChange();
       }}
     >
       {isClicked && index === selectedId1 ? "front" : "back"}

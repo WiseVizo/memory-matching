@@ -3,16 +3,12 @@ import "./App.css";
 import FlashCard from "./FlashCard/FlashCard";
 
 function App() {
-  // const [isFlipped1, setIsFlipped1] = useState(false);
-  // const [isFlipped2, setIsFlipped2] = useState(false);
   const [selectedId1, setSelectedId1] = useState(-1);
   const [isClicked, setIsClicked] = useState(false);
   const selectedIdRef1 = useRef(selectedId1);
   function handleSelectId1(id) {
     setSelectedId1(() => {
-      console.log("before: " + selectedIdRef1.current);
       selectedIdRef1.current = id;
-      console.log("after: " + selectedIdRef1.current);
       return id;
     });
   }
