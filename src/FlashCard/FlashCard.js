@@ -18,12 +18,14 @@ export default function Card({
       return new Promise((resolve) => {
         handleSelectId1(index);
         resolve(); // Resolve the promise when handleClick is done
+        return; // skill issue
       });
     }
-    if (selectedIdRef2.current === -1 && selectedIdRef2.current !== index) {
+    if (selectedIdRef2.current === -1 && selectedIdRef1.current !== index) {
       return new Promise((resolve) => {
         handleSelectId2(index);
         resolve(); // Resolve the promise when handleClick is done
+        return; // skill issue
       });
     }
   }
@@ -59,8 +61,8 @@ export default function Card({
   return (
     <div
       className={
-        (isClicked1 || isClicked2) &&
-        (index === selectedId1 || index === selectedId2)
+        (isClicked1 && index === selectedId1) ||
+        (isClicked2 && index === selectedId2)
           ? "main front"
           : "main back"
       }
@@ -68,8 +70,8 @@ export default function Card({
         handleClickAndChange();
       }}
     >
-      {(isClicked1 || isClicked2) &&
-      (index === selectedId1 || index === selectedId2)
+      {(isClicked1 && index === selectedId1) ||
+      (isClicked2 && index === selectedId2)
         ? "front"
         : "back"}
     </div>
