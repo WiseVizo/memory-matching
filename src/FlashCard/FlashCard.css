@@ -25,5 +25,5 @@
 
 .paired {
   background: #80ef6d;
-  text-overflow: clip;
+  pointer-events: none;
 }

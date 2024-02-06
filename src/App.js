@@ -6,7 +6,17 @@ function App() {
   const [selectedId1, setSelectedId1] = useState(-1);
   const [isClicked1, setIsClicked1] = useState(false);
   const selectedIdRef1 = useRef(selectedId1);
-  const [isPairedArray, setIsPairedArray] = useState({});
+  const [isPairedArray, setIsPairedArray] = useState([]);
+
+  function handleAddToPairArray(id1, id2) {
+    return new Promise((resolve) => {
+      const arr = isPairedArray;
+      arr.push(id1);
+      arr.push(id2);
+      setIsPairedArray(() => arr);
+      resolve();
+    }); // Resolve the promise when handleClick is done
+  }
 
   function handleSelectId1(id) {
     setSelectedId1(() => {
@@ -48,6 +58,8 @@ function App() {
             selectedId2={selectedId2}
             handleSelectId2={handleSelectId2}
             selectedIdRef2={selectedIdRef2}
+            handleAddToPairArray={handleAddToPairArray}
+            isPairedArray={isPairedArray}
           />
         ))}
       </div>

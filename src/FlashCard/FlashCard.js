@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import "./FlashCard.css";
 
 export default function Card({
@@ -12,7 +13,32 @@ export default function Card({
   selectedId2,
   handleSelectId2,
   selectedIdRef2,
+  isPairedArray,
+  handleAddToPairArray,
 }) {
+  useEffect(() => {
+    async function handlePush() {
+      if (isClicked1 && isClicked2) {
+        await handleAddToPairArray(selectedId1, selectedId2);
+        // reset code for cards
+        setIsClicked1(() => false);
+        handleSelectId1(-1);
+        setIsClicked2(() => false);
+        handleSelectId2(-1);
+      }
+    }
+    handlePush();
+  }, [
+    isClicked1,
+    isClicked2,
+    handleAddToPairArray,
+    selectedId1,
+    selectedId2,
+    setIsClicked1,
+    setIsClicked2,
+    handleSelectId1,
+    handleSelectId2,
+  ]);
   function handleClick(index) {
     if (selectedIdRef1.current === -1 && selectedIdRef2.current !== index) {
       return new Promise((resolve) => {
@@ -58,15 +84,10 @@ export default function Card({
     handleChange(); // Then execute handleChange
   };
 
-  let condition1 =
-    (selectedId1 === index || selectedId2 === index) &&
-    isClicked1 &&
-    isClicked2;
-
   return (
     <div
       className={
-        condition1
+        isPairedArray.includes(index)
           ? "main paired"
           : (isClicked1 && index === selectedId1) ||
             (isClicked2 && index === selectedId2)
@@ -74,10 +95,11 @@ export default function Card({
           : "main back"
       }
       onClick={() => {
+        console.log("click");
         handleClickAndChange();
       }}
     >
-      {condition1
+      {isPairedArray.includes(index)
         ? "paired"
         : (isClicked1 && index === selectedId1) ||
           (isClicked2 && index === selectedId2)
