@@ -1,19 +1,32 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import FlashCard from "./FlashCard/FlashCard";
+import WinScreen from "./WinScreen/WinScreen";
 
 function App() {
   const [selectedId1, setSelectedId1] = useState(-1);
   const [isClicked1, setIsClicked1] = useState(false);
   const selectedIdRef1 = useRef(selectedId1);
   const [isPairedArray, setIsPairedArray] = useState([]);
+  const [isWon, setIsWon] = useState(false);
+  const numCards = 12;
+  useEffect(() => {
+    // console.log("length: " + isPairedArray.length);
+    if (isPairedArray.length === numCards) {
+      setIsWon(true);
+    }
+  }, [setIsWon, isPairedArray.length]);
 
   function handleAddToPairArray(id1, id2) {
     return new Promise((resolve) => {
-      const arr = isPairedArray;
-      arr.push(id1);
-      arr.push(id2);
-      setIsPairedArray(() => arr);
+      if (!isPairedArray.includes(id1) && !isPairedArray.includes(id2)) {
+        const arr = isPairedArray;
+        arr.push(id1);
+        arr.push(id2);
+        // console.log("arr: " + arr);
+        // console.log("length: " + isPairedArray.length);
+        setIsPairedArray(() => arr);
+      }
       resolve();
     }); // Resolve the promise when handleClick is done
   }
@@ -43,8 +56,9 @@ function App() {
   return (
     <div className="App">
       <h2>Pair All Cards With Same Contents To Win.</h2>
+      <WinScreen isWon={isWon} />
       <div className="body">
-        {[...Array(12)].map((_, index) => (
+        {[...Array(numCards)].map((_, index) => (
           <FlashCard
             key={index}
             index={index}
