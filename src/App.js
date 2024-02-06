@@ -6,6 +6,7 @@ function App() {
   const [selectedId1, setSelectedId1] = useState(-1);
   const [isClicked1, setIsClicked1] = useState(false);
   const selectedIdRef1 = useRef(selectedId1);
+  const [isPairedArray, setIsPairedArray] = useState({});
 
   function handleSelectId1(id) {
     setSelectedId1(() => {

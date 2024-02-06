@@ -6,11 +6,11 @@
   padding-top: 2.3vw;
   padding-left: 0vw;
   box-sizing: border-box;
-  background: #e1cacab9;
+
   width: 10vw;
   height: 10vw;
   text-align: center;
-  font-size: 6vh;
+  font-size: 4vh;
   font-family: "Space Mono", monospace;
   cursor: pointer;
 }
@@ -21,4 +21,9 @@
 
 .back {
   background-color: rgba(191, 201, 101, 0.888);
+}
+
+.paired {
+  background: #80ef6d;
+  text-overflow: clip;
 }

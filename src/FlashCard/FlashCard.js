@@ -58,11 +58,18 @@ export default function Card({
     handleChange(); // Then execute handleChange
   };
 
+  let condition1 =
+    (selectedId1 === index || selectedId2 === index) &&
+    isClicked1 &&
+    isClicked2;
+
   return (
     <div
       className={
-        (isClicked1 && index === selectedId1) ||
-        (isClicked2 && index === selectedId2)
+        condition1
+          ? "main paired"
+          : (isClicked1 && index === selectedId1) ||
+            (isClicked2 && index === selectedId2)
           ? "main front"
           : "main back"
       }
@@ -70,8 +77,10 @@ export default function Card({
         handleClickAndChange();
       }}
     >
-      {(isClicked1 && index === selectedId1) ||
-      (isClicked2 && index === selectedId2)
+      {condition1
+        ? "paired"
+        : (isClicked1 && index === selectedId1) ||
+          (isClicked2 && index === selectedId2)
         ? "front"
         : "back"}
     </div>
