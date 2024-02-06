@@ -95,7 +95,6 @@ export default function Card({
           : "main back"
       }
       onClick={() => {
-        console.log("click");
         handleClickAndChange();
       }}
     >

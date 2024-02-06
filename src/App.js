@@ -63,6 +63,10 @@ function App() {
           />
         ))}
       </div>
+      <h3>
+        note: every card can be paired with every other card until the content
+        is added in them
+      </h3>
     </div>
   );
 }
