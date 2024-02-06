@@ -10,8 +10,12 @@ function App() {
   const [isPairedArray, setIsPairedArray] = useState([]);
   const [isWon, setIsWon] = useState(false);
   const numCards = 12;
+  function onExit() {
+    console.log("Reset");
+    setIsPairedArray([]);
+    setIsWon(false);
+  }
   useEffect(() => {
-    // console.log("length: " + isPairedArray.length);
     if (isPairedArray.length === numCards) {
       setIsWon(true);
     }
@@ -23,8 +27,6 @@ function App() {
         const arr = isPairedArray;
         arr.push(id1);
         arr.push(id2);
-        // console.log("arr: " + arr);
-        // console.log("length: " + isPairedArray.length);
         setIsPairedArray(() => arr);
       }
       resolve();
@@ -33,9 +35,7 @@ function App() {
 
   function handleSelectId1(id) {
     setSelectedId1(() => {
-      // console.log("ID1-B4: " + selectedId1);
       selectedIdRef1.current = id;
-      // console.log("ID1: " + id);
       return id;
     });
   }
@@ -46,9 +46,7 @@ function App() {
 
   function handleSelectId2(id) {
     setSelectedId2(() => {
-      // console.log("ID2-B4: " + selectedId2);
       selectedIdRef2.current = id;
-      // console.log("ID2: " + id);
       return id;
     });
   }
@@ -56,7 +54,7 @@ function App() {
   return (
     <div className="App">
       <h2>Pair All Cards With Same Contents To Win.</h2>
-      <WinScreen isWon={isWon} />
+      <WinScreen isWon={isWon} onExit={onExit} />
       <div className="body">
         {[...Array(numCards)].map((_, index) => (
           <FlashCard
@@ -84,5 +82,9 @@ function App() {
     </div>
   );
 }
-
+// * extention name: Better Comments
+// todo: survive
+// * info
+// ! warning
+// ? question
 export default App;

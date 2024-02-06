@@ -1,15 +1,18 @@
 import React from "react";
 import "./WinScreen.css";
-
-const WinScreen = ({ isWon }) => {
+const WinScreen = ({ isWon, onExit }) => {
   if (!isWon) {
     return null; // Don't render anything if isWon is false
   }
 
   return (
     <div className="win-screen">
-      <h1>Congratulations! You've won!</h1>
-      {/* Additional content or styling can be added here */}
+      <div className="content">
+        <h1 className="animated-text">You Won!</h1>
+        <button className="exit-button" onClick={onExit}>
+          Reset
+        </button>
+      </div>
     </div>
   );
 };
