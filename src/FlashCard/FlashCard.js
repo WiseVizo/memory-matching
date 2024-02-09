@@ -15,10 +15,13 @@ export default function Card({
   selectedIdRef2,
   isPairedArray,
   handleAddToPairArray,
+  content,
+  value1,
+  value2,
 }) {
   useEffect(() => {
     async function handlePush() {
-      if (isClicked1 && isClicked2) {
+      if (isClicked1 && isClicked2 && value1 === value2) {
         await handleAddToPairArray(selectedId1, selectedId2);
         // reset code for cards
         setIsClicked1(() => false);
@@ -42,14 +45,14 @@ export default function Card({
   function handleClick(index) {
     if (selectedIdRef1.current === -1 && selectedIdRef2.current !== index) {
       return new Promise((resolve) => {
-        handleSelectId1(index);
+        handleSelectId1(index, content);
         resolve(); // Resolve the promise when handleClick is done
         return; // skill issue
       });
     }
     if (selectedIdRef2.current === -1 && selectedIdRef1.current !== index) {
       return new Promise((resolve) => {
-        handleSelectId2(index);
+        handleSelectId2(index, content);
         resolve(); // Resolve the promise when handleClick is done
         return; // skill issue
       });
@@ -102,7 +105,7 @@ export default function Card({
         ? "paired"
         : (isClicked1 && index === selectedId1) ||
           (isClicked2 && index === selectedId2)
-        ? "front"
+        ? content
         : "back"}
     </div>
   );
