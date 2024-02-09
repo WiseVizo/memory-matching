@@ -18,6 +18,7 @@ export default function Card({
   content,
   value1,
   value2,
+  resetValues,
 }) {
   useEffect(() => {
     async function handlePush() {
@@ -29,7 +30,15 @@ export default function Card({
         setIsClicked2(() => false);
         handleSelectId2(-1);
       }
+      if (isClicked1 && isClicked2 && value1 !== value2) {
+        await resetValues();
+        setIsClicked1(() => false);
+        handleSelectId1(-1);
+        setIsClicked2(() => false);
+        handleSelectId2(-1);
+      }
     }
+    if (value1 === -1) return;
     handlePush();
   }, [
     isClicked1,
@@ -41,6 +50,9 @@ export default function Card({
     setIsClicked2,
     handleSelectId1,
     handleSelectId2,
+    value1,
+    value2,
+    resetValues,
   ]);
   function handleClick(index) {
     if (selectedIdRef1.current === -1 && selectedIdRef2.current !== index) {

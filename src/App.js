@@ -130,6 +130,11 @@ function App() {
     });
   }
 
+  function resetValues() {
+    setValue1(() => -1);
+    setValue2(() => -1);
+  }
+
   return (
     <div className="App">
       <h2>Pair All Cards With Same Contents To Win.</h2>
@@ -155,6 +160,7 @@ function App() {
               content={card.value}
               value1={value1}
               value2={value2}
+              resetValues={resetValues}
             />
           );
         })}
